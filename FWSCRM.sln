@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FWSCRM", "FWSCRM.csproj", "{FAF657ED-FC19-4677-9582-877498AB7925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wfaFWSCRM", "wfaFWSCRM\wfaFWSCRM.csproj", "{D60B34A6-C9E8-466F-AA48-E0B12D86DEB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAF657ED-FC19-4677-9582-877498AB7925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF657ED-FC19-4677-9582-877498AB7925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF657ED-FC19-4677-9582-877498AB7925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF657ED-FC19-4677-9582-877498AB7925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60B34A6-C9E8-466F-AA48-E0B12D86DEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60B34A6-C9E8-466F-AA48-E0B12D86DEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60B34A6-C9E8-466F-AA48-E0B12D86DEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60B34A6-C9E8-466F-AA48-E0B12D86DEB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAA0619C-1512-4330-8A2F-C48536EDA877}
+	EndGlobalSection
+EndGlobal
