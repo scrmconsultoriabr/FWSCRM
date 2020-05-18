@@ -30,9 +30,9 @@
         {
             this.tbcTestaFWSCRM = new System.Windows.Forms.TabControl();
             this.tpeWebService = new System.Windows.Forms.TabPage();
+            this.btnAtivaInativaEmpresa = new System.Windows.Forms.Button();
             this.tbxUrlWebService = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbxAtivaDesativaEmpresa = new System.Windows.Forms.CheckBox();
             this.gbxSituacaoEmpresa = new System.Windows.Forms.GroupBox();
             this.rbnDesativada = new System.Windows.Forms.RadioButton();
             this.rbnAtivada = new System.Windows.Forms.RadioButton();
@@ -56,15 +56,15 @@
             this.tbcTestaFWSCRM.Location = new System.Drawing.Point(0, 0);
             this.tbcTestaFWSCRM.Name = "tbcTestaFWSCRM";
             this.tbcTestaFWSCRM.SelectedIndex = 0;
-            this.tbcTestaFWSCRM.Size = new System.Drawing.Size(299, 185);
+            this.tbcTestaFWSCRM.Size = new System.Drawing.Size(456, 163);
             this.tbcTestaFWSCRM.TabIndex = 0;
             // 
             // tpeWebService
             // 
             this.tpeWebService.AutoScroll = true;
+            this.tpeWebService.Controls.Add(this.btnAtivaInativaEmpresa);
             this.tpeWebService.Controls.Add(this.tbxUrlWebService);
             this.tpeWebService.Controls.Add(this.label2);
-            this.tpeWebService.Controls.Add(this.cbxAtivaDesativaEmpresa);
             this.tpeWebService.Controls.Add(this.gbxSituacaoEmpresa);
             this.tpeWebService.Controls.Add(this.btnStatus);
             this.tpeWebService.Controls.Add(this.mtbCNPJ);
@@ -72,16 +72,26 @@
             this.tpeWebService.Location = new System.Drawing.Point(4, 22);
             this.tpeWebService.Name = "tpeWebService";
             this.tpeWebService.Padding = new System.Windows.Forms.Padding(3);
-            this.tpeWebService.Size = new System.Drawing.Size(291, 159);
+            this.tpeWebService.Size = new System.Drawing.Size(448, 137);
             this.tpeWebService.TabIndex = 0;
             this.tpeWebService.Text = "Web Service";
             this.tpeWebService.UseVisualStyleBackColor = true;
+            // 
+            // btnAtivaInativaEmpresa
+            // 
+            this.btnAtivaInativaEmpresa.Location = new System.Drawing.Point(224, 92);
+            this.btnAtivaInativaEmpresa.Name = "btnAtivaInativaEmpresa";
+            this.btnAtivaInativaEmpresa.Size = new System.Drawing.Size(92, 23);
+            this.btnAtivaInativaEmpresa.TabIndex = 7;
+            this.btnAtivaInativaEmpresa.Text = "Ativa / Desativa";
+            this.btnAtivaInativaEmpresa.UseVisualStyleBackColor = true;
+            this.btnAtivaInativaEmpresa.Click += new System.EventHandler(this.btnAtivaInativaEmpresa_Click);
             // 
             // tbxUrlWebService
             // 
             this.tbxUrlWebService.Location = new System.Drawing.Point(11, 19);
             this.tbxUrlWebService.Name = "tbxUrlWebService";
-            this.tbxUrlWebService.Size = new System.Drawing.Size(273, 20);
+            this.tbxUrlWebService.Size = new System.Drawing.Size(305, 20);
             this.tbxUrlWebService.TabIndex = 6;
             this.tbxUrlWebService.Text = "http://192.168.15.9/PortalProjetos/PortalProjetos.asmx";
             // 
@@ -94,23 +104,13 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "URL WebService";
             // 
-            // cbxAtivaDesativaEmpresa
-            // 
-            this.cbxAtivaDesativaEmpresa.AutoSize = true;
-            this.cbxAtivaDesativaEmpresa.Location = new System.Drawing.Point(11, 135);
-            this.cbxAtivaDesativaEmpresa.Name = "cbxAtivaDesativaEmpresa";
-            this.cbxAtivaDesativaEmpresa.Size = new System.Drawing.Size(109, 17);
-            this.cbxAtivaDesativaEmpresa.TabIndex = 4;
-            this.cbxAtivaDesativaEmpresa.Text = "Ativar / Desativar";
-            this.cbxAtivaDesativaEmpresa.UseVisualStyleBackColor = true;
-            // 
             // gbxSituacaoEmpresa
             // 
             this.gbxSituacaoEmpresa.Controls.Add(this.rbnDesativada);
             this.gbxSituacaoEmpresa.Controls.Add(this.rbnAtivada);
             this.gbxSituacaoEmpresa.Location = new System.Drawing.Point(11, 82);
             this.gbxSituacaoEmpresa.Name = "gbxSituacaoEmpresa";
-            this.gbxSituacaoEmpresa.Size = new System.Drawing.Size(207, 47);
+            this.gbxSituacaoEmpresa.Size = new System.Drawing.Size(207, 42);
             this.gbxSituacaoEmpresa.TabIndex = 3;
             this.gbxSituacaoEmpresa.TabStop = false;
             this.gbxSituacaoEmpresa.Text = "Situação Empresa";
@@ -173,7 +173,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(293, 159);
+            this.tabPage2.Size = new System.Drawing.Size(448, 162);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Geral";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -182,15 +182,15 @@
             // 
             this.pnlTestaFWSCRM.Controls.Add(this.btnSair);
             this.pnlTestaFWSCRM.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTestaFWSCRM.Location = new System.Drawing.Point(0, 184);
+            this.pnlTestaFWSCRM.Location = new System.Drawing.Point(0, 165);
             this.pnlTestaFWSCRM.Name = "pnlTestaFWSCRM";
-            this.pnlTestaFWSCRM.Size = new System.Drawing.Size(299, 40);
+            this.pnlTestaFWSCRM.Size = new System.Drawing.Size(456, 40);
             this.pnlTestaFWSCRM.TabIndex = 1;
             // 
             // btnSair
             // 
             this.btnSair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSair.Location = new System.Drawing.Point(212, 9);
+            this.btnSair.Location = new System.Drawing.Point(369, 9);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(75, 23);
             this.btnSair.TabIndex = 1;
@@ -202,11 +202,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 224);
+            this.ClientSize = new System.Drawing.Size(456, 205);
             this.Controls.Add(this.pnlTestaFWSCRM);
             this.Controls.Add(this.tbcTestaFWSCRM);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmTeste";
+            this.Opacity = 0.8D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Testa FWSCRM";
+            this.TopMost = true;
             this.tbcTestaFWSCRM.ResumeLayout(false);
             this.tpeWebService.ResumeLayout(false);
             this.tpeWebService.PerformLayout();
@@ -227,12 +232,12 @@
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.MaskedTextBox mtbCNPJ;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox cbxAtivaDesativaEmpresa;
         private System.Windows.Forms.GroupBox gbxSituacaoEmpresa;
         private System.Windows.Forms.RadioButton rbnDesativada;
         private System.Windows.Forms.RadioButton rbnAtivada;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbxUrlWebService;
+        private System.Windows.Forms.Button btnAtivaInativaEmpresa;
     }
 }
 

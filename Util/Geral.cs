@@ -923,6 +923,17 @@ namespace FWSCRM.Util
             i_PortalProjetos.Endpoint.Binding = lBinding;
         }
 
+        public bool AtivaDesativaEmpresa(string PUrl, int PTimeOut, string PCNPJ, string PAcao)
+        {
+            //Configura Serviço
+            ConfiguraServico(PUrl, PTimeOut);
+
+            //Obtem Retorno WebService
+            PortalProjetos.AtivaInativaEmpresaResponse lResponse = i_PortalProjetos.AtivaInativaEmpresaAsync(PCNPJ, PAcao).Result;
+
+            return lResponse.Body.AtivaInativaEmpresaResult;
+        }
+
         #endregion
 
         public void RefreshMemoria()
