@@ -8,6 +8,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using FWSCRM.Util;
 //using FirebirdSql.Data.FirebirdClient;
 
 namespace FWSCRM.BD
@@ -37,6 +40,16 @@ namespace FWSCRM.BD
         private DbProviderFactory factory = null;
         private DbTransaction trans = null;
 
+        private struct TSCRMConfig
+        {
+            public JObject SCRMConfigJson { get; set; }
+            public string ConectionString { get; set; }
+            public string ProviderName { get; set; }
+            public string DataBase { get; set; }
+        }
+        TSCRMConfig SCRMConfig;
+
+        private string NomeProvedor { get; set; }
         public string ConexaoPrincipal { get; set; }
 
         public string ConexaoDiretaExterna { get; set; }
@@ -92,7 +105,18 @@ namespace FWSCRM.BD
         public virtual string getAppSettings()
         {
             //return "StringConexaoPadrao";
-            return ConfigurationManager.AppSettings.GetKey(0);
+            // return ConfigurationManager.AppSettings.GetKey(0);
+            string stringConxao = string.Empty;
+            if (ConfigurationManager.AppSettings.Keys.Count > 0)
+            {
+                stringConxao = ConfigurationManager.AppSettings.GetKey(0);
+            }
+            else
+            {
+                stringConxao = SCRMConfig.ConectionString;
+            }
+
+            return stringConxao;
         }
 
         protected string getAppSettingsDataBase()
@@ -108,9 +132,17 @@ namespace FWSCRM.BD
             }
             else
             {
-                string key = this.getAppSettings();
-                this.conSettings = ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings[key]];
-                return this.conSettings.ProviderName;
+                if (ConfigurationManager.AppSettings.Keys.Count > 0)
+                {
+                    string key = this.getAppSettings();
+                    this.conSettings = ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings[key]];
+                    return this.conSettings.ProviderName;
+                }
+                else
+                {
+
+                    return SCRMConfig.ProviderName;
+                }
             }
         }
 
@@ -122,9 +154,20 @@ namespace FWSCRM.BD
             }
             else
             {
-                string key = this.getAppSettings();
-                this.conSettings = ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings[key]];
-                this.ConexaoPrincipal = this.conSettings.ConnectionString;
+                if (!SCRMConfig.Equals(null))
+                {
+                    this.ConexaoPrincipal = SCRMConfig.ConectionString;
+                    return this.ConexaoPrincipal;
+                }
+                else
+                {
+                    string key = this.getAppSettings();
+                    this.conSettings = ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings[key]];
+                    if (!this.conSettings.Equals(null))
+                    {
+                        this.ConexaoPrincipal = this.conSettings.ConnectionString;
+                    }
+                }
 
                 return this.conSettings.ConnectionString;
             }
@@ -144,6 +187,10 @@ namespace FWSCRM.BD
                 l_Chave = null;
             }
 
+            if (!SCRMConfig.Equals(null))
+            {
+                l_Chave = SCRMConfig.DataBase;
+            }
             //return Util.Geral.Instance.DescricaoEnum(l_Chave);
 
             if (l_Chave != null)
@@ -167,6 +214,19 @@ namespace FWSCRM.BD
         protected void InicializeVariaveisPrivate()
         {
             LogAtivo();
+
+
+            var LArquivoJSon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.ToString(), "SCRMConfig.json");
+            if (File.Exists(LArquivoJSon))
+            {
+                SCRMConfig = new TSCRMConfig();
+
+                SCRMConfig.SCRMConfigJson = JObject.Parse(File.ReadAllText(LArquivoJSon));
+                SCRMConfig.ConectionString = Geral.Instance.GetValorTagJson(SCRMConfig.SCRMConfigJson, "ConnectionString");
+                SCRMConfig.ProviderName = Geral.Instance.GetValorTagJson(SCRMConfig.SCRMConfigJson, "ProviderName");
+                SCRMConfig.DataBase = Geral.Instance.GetValorTagJson(SCRMConfig.SCRMConfigJson, "DataBase");
+
+            }
 
             #region MSSQL
 
@@ -615,7 +675,7 @@ namespace FWSCRM.BD
                         {
                             if (!this.ValueIsNull(prop))
                             {
-                                key = ca.ColumnName + " = " + _tagParam + ca.ColumnName + " AND "; 
+                                key = ca.ColumnName + " = " + _tagParam + ca.ColumnName + " AND ";
                             }
                         }
                     }
@@ -636,7 +696,7 @@ namespace FWSCRM.BD
                     if (l_TipoColuna is ColumnAttribute)
                     {
                         ColumnAttribute ca = l_TipoColuna as ColumnAttribute;
-                        if ((!ca.Temp) && (!ca.Inc) )
+                        if ((!ca.Temp) && (!ca.Inc))
                         {
                             l_Aux = columns;
                             columns = l_Aux + ca.ColumnName + " = " + _tagParam + ca.ColumnName + ", ";
@@ -1191,7 +1251,7 @@ namespace FWSCRM.BD
             foreach (PropertyInfo prop in type.GetProperties())
             {
                 object[] cols = prop.GetCustomAttributes(true);
-                
+
                 foreach (object col in cols)
                 {
                     if (col is ColumnAttribute)
@@ -1489,7 +1549,7 @@ namespace FWSCRM.BD
         public List<T> ExecReaderStoredProc<T>(string sql, DbParameter[] a_Parametros, DbTransaction a_Transacao) //, DbConnection a_conexao)
         {
             List<T> l_Result;
-            
+
             ////Obtem o tipo de objeto que esta sendo utilizado
             //Type objectType = typeof(T);
 
@@ -1520,14 +1580,14 @@ namespace FWSCRM.BD
             {
                 this.cmd.Transaction = a_Transacao;
             }
-            
+
             try
             {
                 if (this.con.State != ConnectionState.Open)
                 {
                     this.con.Open();
                 }
-                
+
                 dr = this.cmd.ExecuteReader();
                 l_Result = DataReaderMapToList<T>(dr);
                 // l_Result = DataReaderMapToList<T>(this.cmd.ExecuteReader());
@@ -1630,11 +1690,11 @@ namespace FWSCRM.BD
             return l_Result;
         }
 
-    #endregion
+        #endregion
 
-    #region Execução geral
+        #region Execução geral
 
-    public int Execute(string sql, DbTransaction a_Transacao)
+        public int Execute(string sql, DbTransaction a_Transacao)
         {
             int l_Retorno = 0;
             if (a_Transacao == null)
@@ -2190,7 +2250,7 @@ namespace FWSCRM.BD
 
             try
             {
-                
+
                 while (dr.Read())
                 {
                     // Percorre os campos do DataReader

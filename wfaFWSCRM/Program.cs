@@ -16,7 +16,7 @@ namespace wfaFWSCRM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmTeste());
+            Application.Run(new frmTesteFW());
         }
     }
 }

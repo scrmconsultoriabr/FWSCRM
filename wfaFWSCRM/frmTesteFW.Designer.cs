@@ -1,6 +1,6 @@
 ﻿namespace wfaFWSCRM
 {
-    partial class frmTeste
+    partial class frmTesteFW
     {
         /// <summary>
         /// Required designer variable.
@@ -40,11 +40,15 @@
             this.mtbCNPJ = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tbxConexao = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnConexao = new System.Windows.Forms.Button();
             this.pnlTestaFWSCRM = new System.Windows.Forms.Panel();
             this.btnSair = new System.Windows.Forms.Button();
             this.tbcTestaFWSCRM.SuspendLayout();
             this.tpeWebService.SuspendLayout();
             this.gbxSituacaoEmpresa.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.pnlTestaFWSCRM.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,13 +174,42 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tbxConexao);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.btnConexao);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(448, 162);
+            this.tabPage2.Size = new System.Drawing.Size(448, 137);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Geral";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tbxConexao
+            // 
+            this.tbxConexao.Location = new System.Drawing.Point(13, 26);
+            this.tbxConexao.Name = "tbxConexao";
+            this.tbxConexao.Size = new System.Drawing.Size(429, 20);
+            this.tbxConexao.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Nome Conexão";
+            // 
+            // btnConexao
+            // 
+            this.btnConexao.Location = new System.Drawing.Point(13, 52);
+            this.btnConexao.Name = "btnConexao";
+            this.btnConexao.Size = new System.Drawing.Size(75, 23);
+            this.btnConexao.TabIndex = 0;
+            this.btnConexao.Text = "Conexão";
+            this.btnConexao.UseVisualStyleBackColor = true;
+            this.btnConexao.Click += new System.EventHandler(this.btnConexao_Click);
             // 
             // pnlTestaFWSCRM
             // 
@@ -198,7 +231,7 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
-            // frmTeste
+            // frmTesteFW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,16 +240,17 @@
             this.Controls.Add(this.tbcTestaFWSCRM);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmTeste";
+            this.Name = "frmTesteFW";
             this.Opacity = 0.8D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Testa FWSCRM";
-            this.TopMost = true;
             this.tbcTestaFWSCRM.ResumeLayout(false);
             this.tpeWebService.ResumeLayout(false);
             this.tpeWebService.PerformLayout();
             this.gbxSituacaoEmpresa.ResumeLayout(false);
             this.gbxSituacaoEmpresa.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.pnlTestaFWSCRM.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -238,6 +272,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbxUrlWebService;
         private System.Windows.Forms.Button btnAtivaInativaEmpresa;
+        private System.Windows.Forms.TextBox tbxConexao;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnConexao;
     }
 }
 

@@ -6,6 +6,9 @@ using System.Reflection;
 using System.Configuration;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace FWSCRM.BD
 {
@@ -33,6 +36,7 @@ namespace FWSCRM.BD
         private DbProviderFactory factory = null;
         private DbTransaction trans = null;
 
+        
         public string ConexaoDiretaExterna { get; set; }
 
         public string ProviderexternoDireto { get; set; }
@@ -60,8 +64,23 @@ namespace FWSCRM.BD
 
         public virtual string getAppSettings()
         {
-            //return "StringConexaoPadrao";
-            return ConfigurationManager.AppSettings.GetKey(0);
+            string stringConxao = string.Empty;
+            if (!ConfigurationManager.AppSettings.GetKey(0).Equals(null))
+            {
+                stringConxao = ConfigurationManager.AppSettings.GetKey(0);
+            }
+            else
+            {
+                //var array = JsonConvert.DeserializeObject("");
+                JObject data = JObject.Parse( File.ReadAllText("") );
+
+                //foreach (var item in array)
+                //{
+                //    //Console.WriteLine("{0} {1}", item.temp, item.vcc);
+                //}
+            }
+
+            return stringConxao;
         }
 
         protected string getAppSettingsDataBase()

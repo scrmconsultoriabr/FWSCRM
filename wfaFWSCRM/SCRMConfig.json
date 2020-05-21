@@ -1,0 +1,14 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "SCRMAPIConnectionString": "Data Source=192.168.1.9,1450;Initial Catalog=SCRMControle;User ID=sa;Password=scrm_123;Min Pool Size=1;Connect Timeout=10",,
+    "providerName": "System.Data.SqlClient"
+  }
+}

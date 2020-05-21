@@ -1,6 +1,8 @@
 ﻿using Ionic.Zip;
 using iTextSharp.text.pdf;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -9,7 +11,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -941,7 +942,23 @@ namespace FWSCRM.Util
             MemoryManagement l_MemoryManagement = new MemoryManagement();
             l_MemoryManagement.FlushMemory();
         }
-       
+
+        public string GetValorTagJson(JObject PJson, string PChave)
+        {
+            string lRetornoTag = string.Empty;
+
+            foreach(KeyValuePair<string, JToken> keyValuePair in PJson)
+            {
+                if (PChave == keyValuePair.Key)
+                {
+                    lRetornoTag = keyValuePair.Value.ToString();
+                    break;
+                }
+            }
+
+            return lRetornoTag;
+        }
+
     }
 
    
@@ -962,6 +979,8 @@ namespace FWSCRM.Util
             }
         }
     }
+
+   
 
     #endregion
 

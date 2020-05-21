@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 namespace wfaFWSCRM
 {
-    public partial class frmTeste : Form
+    public partial class frmTesteFW : Form
     {
         private bool AtivaDesativaEmpresa { get; set; } = false;
-        public frmTeste()
+        public frmTesteFW()
         {
             InitializeComponent();
         }
@@ -83,6 +83,12 @@ namespace wfaFWSCRM
 
             }
             MessageBox.Show(l_Mensagem);
+        }
+
+        private void btnConexao_Click(object sender, EventArgs e)
+        {
+            clsBanco objbanco = new clsBanco();
+            tbxConexao.Text = objbanco.ObtemStringConexao();
         }
     }
 }
